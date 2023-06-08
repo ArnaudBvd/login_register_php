@@ -27,7 +27,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Password saisi
-    
+    // on vérifie si un mot de passe a été saisi
+    if(empty($_POST["password"])){
+        $errors['password'] = "Veuillez saisir un mot de passe";
+    }
+
+    // on vérifie si la confirmation du mot de passe a été saisie
+    if(empty($_POST["password2"])){
+        $errors['password2'] = "Veuillez confirmer votre mot de passe";
+    }
+
     // Password confirmé
 }
 
@@ -54,14 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="email">Email</label>
                 <input id="email" class="form-control
                 
-        <?php
-        // Afficher les classes Bootstrap en fonction de la saisie
-        // Bien se placer dans la classe
-        if (array_key_exists("email", $errors)) {
-            echo ('is-invalid');
-        } else if ($_SERVER["REQUEST_METHOD"] == 'POST') {
-            echo ('is-valid');
-        } ?>" type="text" name="email" placeholder="email">
+                <?php
+                // Afficher les classes Bootstrap en fonction de la saisie
+                // Bien se placer dans la classe
+                if (array_key_exists("email", $errors)) {
+                echo ('is-invalid');
+                } else if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+                echo ('is-valid');
+                } ?>" type="text" name="email" placeholder="email">
 
 
                 <?php
@@ -73,18 +82,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 } else if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     echo ('<div class="valid-feedback">
                     Email valide !
-            </div>');
+                </div>');
                 }
                 ?>
             </div>
 
 
             <div class="form-group mt-3">
+                
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" placeholder="Mot de passe" class="form-control">
+                <input type="password" name="password" id="password" placeholder="Mot de passe" class="form-control <?php
+                // Afficher les classes Bootstrap en fonction de la saisie
+                // Bien se placer dans la classe
+                if (array_key_exists("password", $errors)) {
+                echo ('is-invalid');
+                } else if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+                echo ('is-valid');
+                } ?>">
+                <?php
+                // Afficher un message après l'input
+                if (array_key_exists("password", $errors)) {
+                    echo ('<div id="validationServerUsernameFeedback" class="invalid-feedback">
+                ' . $errors['password'] . '
+                </div>');
+                } else if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+                    echo ('<div class="valid-feedback">
+                    Mot de passe valide !
+                </div>');
+                }
+                ?>
 
                 <label for="password2">Confirmation du mot de passe</label>
-                <input type="password2" name="password2" id="password2" placeholder="Confirmez le mot de passe" class="form-control">
+                <input type="password2" name="password2" id="password2" placeholder="Confirmez le mot de passe" class="form-control <?php
+                // Afficher les classes Bootstrap en fonction de la saisie
+                // Bien se placer dans la classe
+                if (array_key_exists("password2", $errors)) {
+                echo ('is-invalid');
+                } else if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+                echo ('is-valid');
+                } ?>">
+                <?php
+                // Afficher un message après l'input
+                if (array_key_exists("password2", $errors)) {
+                    echo ('<div id="validationServerUsernameFeedback" class="invalid-feedback">
+                ' . $errors['password2'] . '
+                </div>');
+                } else if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+                    echo ('<div class="valid-feedback">
+                    Confirmation valide !
+                </div>');
+                }
+                ?>
             </div>
 
             <input type="submit" class="btn btn-success my-4">
