@@ -61,8 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="" method="post" class="ms-5">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" class="form-control
-                
+                <input id="email" type="text"                       
+                value="<?php
+                // Permet de garder la saisie de l'utilisateur même en si le formulaire est mal renseigné
+                 echo (isset($_POST['email'])?$_POST['email']:"") ?>"
+                name="email" placeholder="email" class="form-control
+                                
                 <?php
                 // Afficher les classes Bootstrap en fonction de la saisie
                 // Bien se placer dans la classe
@@ -70,8 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo ('is-invalid');
                 } else if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 echo ('is-valid');
-                } ?>" type="text" name="email" placeholder="email">
-
+                } ?>" >
 
                 <?php
                 // Afficher un message après l'input
@@ -91,7 +94,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group mt-3">
                 
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" placeholder="Mot de passe" class="form-control <?php
+                <input type="password" name="password"
+                value="<?php
+                // Permet de garder la saisie de l'utilisateur même en si le formulaire est mal renseigné
+                 echo (isset($_POST['password'])?$_POST['password']:"") ?>"
+                 id="password" placeholder="Mot de passe"
+                 class="form-control
+
+                <?php
                 // Afficher les classes Bootstrap en fonction de la saisie
                 // Bien se placer dans la classe
                 if (array_key_exists("password", $errors)) {
@@ -99,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 } else if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 echo ('is-valid');
                 } ?>">
+
                 <?php
                 // Afficher un message après l'input
                 if (array_key_exists("password", $errors)) {
@@ -112,8 +123,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
                 ?>
 
-                <label for="password2">Confirmation du mot de passe</label>
-                <input type="password2" name="password2" id="password2" placeholder="Confirmez le mot de passe" class="form-control <?php
+                <label for="password2" class="mt-2">Confirmation du mot de passe</label>
+                <input type="password" name="password2"
+                value="<?php
+                // Permet de garder la saisie de l'utilisateur même en si le formulaire est mal renseigné
+                 echo (isset($_POST['password2'])?$_POST['password2']:"") ?>"
+                 id="password2" placeholder="Confirmez le mot de passe" class="form-control
+
+                <?php
                 // Afficher les classes Bootstrap en fonction de la saisie
                 // Bien se placer dans la classe
                 if (array_key_exists("password2", $errors)) {
@@ -121,6 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 } else if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 echo ('is-valid');
                 } ?>">
+
                 <?php
                 // Afficher un message après l'input
                 if (array_key_exists("password2", $errors)) {
